@@ -19,7 +19,7 @@ public class JpaApplication {
     //@Bean
     public CommandLineRunner commandLineRunner(
             AuthorRepository repository,
-            VideoRepository videoReository
+            VideoRepository videoRepository
     ) {
         return args -> {
             /*var author = Author.builder()
@@ -34,7 +34,7 @@ public class JpaApplication {
                     .name("abc")
                     .length(5)
                     .build();
-            videoReository.save(video);
+            videoRepository.save(video);
         };
     }
 
