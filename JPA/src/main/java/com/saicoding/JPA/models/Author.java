@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,15 +15,7 @@ import java.time.LocalDateTime;
 public class Author {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "author_seq"
-    )
-    @SequenceGenerator(
-            name = "author_seq",
-            sequenceName = "author_sequence",
-            allocationSize = 1
-    )
+    @GeneratedValue
     private Integer id;
 
     @Column(
@@ -51,5 +44,8 @@ public class Author {
             insertable = false
     )
     private LocalDateTime lastModified;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Course> courses;
 
 }
