@@ -2,21 +2,18 @@ package com.saicoding.JPA.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table(name = "AUTHOR_TBL")
-public class Author {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Author extends BaseEntity{
 
     @Column(
             name = "f_name",
@@ -33,17 +30,6 @@ public class Author {
     private String email;
 
     private int age;
-
-    @Column(
-            updatable = false,
-            nullable = false
-    )
-    private LocalDateTime createdAt;
-
-    @Column(
-            insertable = false
-    )
-    private LocalDateTime lastModified;
 
     @ManyToMany(mappedBy = "authors")
     private List<Course> courses;
